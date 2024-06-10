@@ -1,0 +1,89 @@
+.africup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.africup p {
+    position: absolute;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #fff; 
+    margin-right: 50%;
+    margin-bottom: 3%; 
+}
+.bouton1, .bouton2 {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #50d6ae;
+    padding: 13px 32px; 
+    background-color: #50d6ae;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 4%;
+}
+.bouton1 {
+    position: absolute;
+    margin-right: 66%;
+}
+.bouton2 {
+    position: absolute;
+    margin-right: 31%;
+}
+.clash1, .clash2 {
+    color: #fff;
+    text-align: inherit;
+    z-index: 8;
+    height: auto;
+    width: auto;
+    white-space: nowrap;
+    line-height: 32px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    backdrop-filter: none;
+    filter: none;
+    transform-origin: 50% 50%;
+}
+.clash2 {
+    margin-left: 4%;
+}
+.ct {
+    position: absolute;
+    margin-bottom: 22%;
+    margin-right: 48%;
+}
+.contenu{
+    display: flex;
+    height: 90vh;
+    background-color: black;
+}
+.p1, .p2 {
+    flex: 1;
+}
+.p1 {
+    width: 60%;
+}
+.p1 h2 {
+    color: #fff;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 1.125em;
+    margin-left: 27%;
+    margin-top: 20%;
+}
+.p1 p {
+    color: #fff;
+    margin: 10px 0;
+    font-size: 13.6px;
+    font-weight: 400;
+    margin-left: 27%;
+}
+iframe {
+    margin-top: 15%;
+    margin-left: 7%;
+}

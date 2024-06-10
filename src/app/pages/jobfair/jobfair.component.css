@@ -1,0 +1,191 @@
+.jobfaire {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.jobfaire img {
+    position: absolute;
+    font-weight: bold;
+    font-size: 75px;
+    color: #fff;
+    margin-right: 51%;
+    margin-bottom: 12%;
+}
+.jobfaire p {
+    position: absolute;
+    font-weight: 900;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', sans-serif;
+    color: #fff; 
+    margin-right: 55%;
+    margin-bottom: 3%; 
+    
+}
+.bouton1, .bouton2 {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #50d6ae;
+    padding: 15px 32px; 
+    background-color: #50d6ae;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 7%;
+}
+.bouton1 {
+    position: absolute;
+    margin-right: 60%;
+ 
+}
+.bouton2 {
+    position: absolute;
+    margin-right: 41%;
+}
+.paragh {
+    color: #fff;
+
+}
+.clash1, .clash2 {
+    color: #fff;
+    text-align: inherit;
+    font-style: italic;
+    z-index: 8;
+    height: auto;
+    width: auto;
+    white-space: nowrap;
+    line-height: 32px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 14px;
+    backdrop-filter: none;
+    filter: none;
+    transform-origin: 50% 50%;
+}
+.clash2 {
+    margin-left: 4%;
+}
+.ct {
+    position: absolute;
+    margin-bottom: 22%;
+    margin-right: 48%;
+}
+
+.contenu{
+    display: flex;
+    height: 90vh;
+}
+.p1, .p2, .part1, .part2 {
+    flex: 1;
+}
+.p1 h2, .part1 h2{
+    color: black;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 1.125em;
+    margin-left: 27%;
+    margin-top: 20%;
+}
+.part1 .titre2 {
+    color: black;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.125em;
+    margin-left: 27%;
+    margin-top: 15%;
+}
+.p1 p, .part1 p, .paragrahe2 {
+    color: black;
+    margin: 10px 0;
+    font-size: 15px;
+    font-weight: 400;
+    margin-left: 27%;
+}
+.part1 .paragrahe2 {
+    margin-top: 16%;
+}
+
+.p2 img, .part2 img, .img2 {
+    width: 460px;
+    height: 480px;
+    margin-top: 10%;
+}
+.partie2 {
+    height: 80vh;
+    margin-top: 50px;
+}
+.partie2 h2 {
+    color: black;
+    font-weight: 750;
+    font-size: 32px;
+    line-height: 1.125em;
+    margin-left: 14%;
+}
+.recrutement .titre {
+    color: black;
+    font-weight: 750;
+    font-size: 31px;
+    line-height: 1.125em;
+    margin-left: 19%;
+    margin-top: 3%;
+}
+.contenu1{
+    display: flex;
+    height: 190vh;
+}
+.start-animation .progress-bar {
+    animation: progress-animation 1s ease-out forwards;
+}
+.part1 .paragrahe2 {
+    position: absolute;
+    margin-top: 29%;
+    margin-left: 13%;
+}
+.part1 .titre2 {
+    position: absolute;
+    margin-top: 25%;
+    margin-left: 13%; 
+}
+.bouton22, .bouton21{
+    position: absolute;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #53F6C6;
+    padding: 12px 30px; 
+    background-color: #53F6C6;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 2%;
+    margin-left: 13%;
+}
+.bouton21 {
+    margin-top: 6%;
+}
+.bouton23, .bouton24{
+    position: absolute;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #53F6C6;
+    padding: 12px 30px; 
+    background-color: #53F6C6;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 38%;
+    margin-left: 12%;
+}
+.bouton24 {
+    margin-top: 42%;
+    margin-right: 10%;
+}
+
+
+/* lorsque on selection un object */
+::selection {
+    background: #50d6ae;
+    color: #fff;}

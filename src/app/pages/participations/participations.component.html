@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Manage <b>Participation</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="material-icons">&#xE147;</i> <span>Add New Participation</span></button>
+                            <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletModel"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>                      
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover" style="width: 128;">
+                    <thead>
+                        <tr>
+                           
+                            <th>First_name</th>
+                            <th>Last_name</th>
+                            <th style="text-align: center;">Email</th>
+                            <th>Phone</th>
+                            <th>Position</th>
+                            <th>Presence_mode</th>
+                            <th style="text-align: center;">Field of activity</th>
+                            <th>Your_goals</th>
+                            <th>Event</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of allpart">
+                        
+                        
+                            <td>{{p?.user?.first_name}}</td>
+                            <td>{{p?.user?.last_name}}</td>
+                            <td>{{p?.user?.email}}</td>
+                            <td>{{p?.user?.phone_number}}</td>
+                            <td>{{p?.user?.auth?.name}}</td>
+                            <td>{{p?.presence}}</td>
+                            <td>{{p?.activite}}</td>
+                            <td>{{p?.goal}}</td>
+                            <td><a href="#detailevent"(click)="edit(p.id)" class="edit" data-bs-toggle="modal">Détail</a>
+                            </td>
+                            <td>{{p?.event}}</td>
+                            <td>
+                                <a href="#editModal" (click)="edit(p.id)" class="edit" data-bs-toggle="modal" ><i class="material-icons" data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <a href="#deletModel" (click)="delete(p.id)" class="delete" data-bs-toggle="modal"><i class="material-icons" data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                            </td>
+                        </tr>
+                        <!-- Ajoutez d'autres lignes de données ici -->
+                    </tbody>
+                </table>
+              
+            </div>
+        </div>        
+    </div>
+    <!-- Modals pour l'ajout, l'édition et la suppression ici -->
+    <!--Add Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form [formGroup]="inscri">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Add Participation</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">					
+                        
+                      
+                       	
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input  formControlName="email"  type="email" class="form-control" required>
+                        </div>	
+                      	
+                       	
+                    <div class="form-group">
+                        <label>Presence mode</label>
+                      <input  formControlName="presence"  type="text" class="form-control" list="Presence" required>
+                      <datalist id="Presence">
+                        <option value="in-person"></option>
+                        <option value="online"></option>
+                    </datalist>
+                </div>	
+                <div class="form-group">
+                    <label>Field of activity</label>
+                  <input formControlName="activity" type="text" class="form-control" list="Field" required>
+                  <datalist id="Field">
+                    <option value="Banking/Finance/Insurance"></option>
+                    <option value="Marketing/Advertising/Communication"></option>
+                    <option value="Health and Well-being"></option>
+                    <option value="Industry"></option>
+                    <option value="Other"></option>
+                </datalist>
+            </div>	
+            <div class="form-group">
+                <label>Your goals</label>
+                <input type="text"  formControlName="goal" class="form-control" required>
+            </div>	
+            <div class="form-group">
+                <label for="event">Event:</label>
+                <div id="event" style="text-align: center; margin-left: 4%;">
+                    <div *ngFor="let e of event; let i = index" class="checkbox-container">
+                        <input type="checkbox" [id]="'option' + i" name="event" [value]="e.id" (change)="onCheckboxChange($event)">
+                        <label [for]="'option' + i">{{ e.event }}</label>
+                      </div>
+                </div>
+            </div>		
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success"  (click)="enregistrer()"  data-bs-dismiss="modal">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div id="detailevent" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form >
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Détail Event</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <p *ngFor="let u of eventchois ">{{u[1]}}</p>
+
+                     </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Edit Modal HTML -->
+    <div id="editModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="editForm">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Edit Participation</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">					
+                       
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" name="email"  [(ngModel)]="email" class="form-control" required>
+                        </div>	
+                      		
+                        			
+                    <div class="form-group">
+                        <label>Presence mode</label>
+                      <input type="text" name="presence"  [(ngModel)]="presence" class="form-control" list="Presence" required>
+                      <datalist id="Presence">
+                        <option value="in-person"></option>
+                        <option value="online"></option>
+                    </datalist>
+                </div>	
+               
+           
+            <div class="form-group">
+                <div id="event" style="text-align: center; margin-left: 4%;">
+                    <div *ngFor="let e of event; let i = index" class="checkbox-container">
+                        <input type="checkbox" [id]="'option' + i" name="event" [(ngModel)]="e.show" [value]="e.id" (change)="onCheckboxChange($event)">
+                        <label [for]="'option' + i">{{ e.event }}</label>
+                      </div>
+                </div>
+            </div>	
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="deletModel" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Delete Participation</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    </div>
+                    <div class="modal-body">					
+                        <p>Are you sure you want to delete these Records?</p>
+                        <p class="text-warning"><small>This action cannot be undone.</small></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" (click)="archiver()" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

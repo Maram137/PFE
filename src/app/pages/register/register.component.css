@@ -1,0 +1,138 @@
+body {
+    margin: 0;
+}
+
+.register {
+    background-image: url('https://www.bigtech.africa/wp-content/uploads/2018/06/registration-title-img.jpg');
+    background-position: center;
+    background-size: contain;
+    height: 55vh; /* Hauteur fixe ou dynamique selon votre besoin */
+}
+
+.register h1 {
+    position: absolute;
+    font-weight: bold;
+    font-size: 55px;
+    font-family: Poppins, sans-serif;
+    color: #fff;
+    margin-top: 178px;
+    margin-left: 265px;
+}
+
+.container {
+    margin-top: 40px;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+    margin-left: 12%;
+}
+
+
+.row:first-child {
+    width: 100%;
+}
+
+.row:first-child .col {
+    flex: 1;
+   
+}
+
+.row:first-child {
+    margin-bottom: 2rem;
+}
+
+.row.custom-row {
+    width: 90%; /* Changer la valeur selon votre préférence */
+    margin: 0 auto; /* Pour centrer horizontalement la partie */
+}
+
+
+.custom-row .col {
+    margin-bottom: 2rem;
+
+}
+.ak{
+    margin-left: 70px;
+}
+.az{
+    margin-left: 70px;
+}
+.ka{
+    margin-left: 90px;
+}
+.row .col-md-4 img {
+    margin-left: 160px;
+    margin-top: 20px;
+}
+.row .col-md-6 img {
+    margin-left: 300px;
+    
+}
+.row .col-md-6 .im5 {
+    margin-left: 160px;
+}
+.row .col-md-4 h4 {
+    font-weight: bold;
+    margin-top: 25px;
+}
+.row .col-md-6 h4 {
+    font-weight: bold;
+    margin-top: 25px;
+}
+.row .col-md-4 .inscription {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #50d6ae;
+    padding: 15px 27px; 
+    background-color: #50d6ae;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 25px;
+    margin-left: 140px;
+}
+.row .col-md-6 .inscription {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #50d6ae;
+    padding: 15px 27px; 
+    background-color: #50d6ae;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-left: 290px;
+}
+ .row .col-md-6 .inscrip {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #50d6ae;
+    padding: 15px 27px; 
+    background-color: #50d6ae;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 10px;
+    margin-left: 150px;
+}
+.ap{
+    margin-left: 190px;
+}
+
+.ad{
+    margin-left: 140px;
+}
+
+
+/* lorsque on selection un object */
+::selection {
+    background: #50d6ae;
+    color: #fff;}
+

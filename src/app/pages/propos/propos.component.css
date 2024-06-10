@@ -1,0 +1,63 @@
+.propos {
+    background-image: url('https://www.bigtech.africa/wp-content/uploads/2024/01/WKH_9823-scaled.jpg');
+    background-position: center;
+    height: 100vh;
+    background-size: cover;
+}
+.propos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p  {
+    font-weight: bold;
+    font-size: 80px;
+    color: #fff;
+   margin-right:  300px;
+    
+}
+
+.image-grid {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    margin-bottom: 30px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col {
+    flex: 1;
+    padding: 0;
+    position: relative;
+}
+
+.row img {
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+    height: auto;
+}
+
+.team-name {
+    position: absolute;
+    top: 4%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    margin-left: 16px;
+}
+
+
+/* lorsque on selection un object */
+::selection {
+    background: #50d6ae;
+    color: #fff;}

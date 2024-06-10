@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en" [class.light-theme]="isLight()" [class.dark-theme]="!isLight()">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Admin Dashboard</title>
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <aside id="sidebar" class="js-sidebar">
+            <!-- Content For Sidebar -->
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a routerLink="">BIGTECH</a>
+                </div>
+                <ul class="sidebar-nav">
+                    <li class="sidebar-header">
+                        {{this.profil}} Elements
+                    </li>
+                    <li class="sidebar-item">
+                        <a  class="sidebar-link"(click)="showPage('dashboard')" >
+                            <i class="fa-solid fa-list pe-2"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li  *ngIf="this.profil=='ADMIN'" class="sidebar-item">
+                        <a class="sidebar-link" (click)="showPage('participations')"><i class="fa-solid fa-users"></i>
+                            Participation
+                        </a>
+                    </li>
+                    
+                    <li  *ngIf="this.profil=='ADMIN'" class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#pages" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-file-lines pe-2"></i>
+                            Pages
+                        </a>
+                        <ul id="pages" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a class="sidebar-link" (click)="showPage('page1')">Agenda</a>
+                            </li>
+                           
+                        </ul>
+                    </li>
+                    <li  *ngIf="this.profil=='ADMIN'" class="sidebar-item">
+                        <a href="#" class="sidebar-link collapsed" data-bs-target="#posts" data-bs-toggle="collapse"
+                            aria-expanded="false"><i class="fa-solid fa-sliders pe-2"></i>
+                            Posts
+                        </a>
+                        <ul id="posts" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a  class="sidebar-link"  (click)="showPage('cardevent')">
+                                    Event</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a  class="sidebar-link" (click)="showPage('page2')">
+                                    Members</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a  class="sidebar-link" (click)="showPage('ourechoes')">
+                                    Our_Echoes</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a  class="sidebar-link"  (click)="showPage('sponsors')">
+                                    Sponsors</a>
+                            </li>
+                        </ul>
+                    </li>
+                   
+
+                </ul>
+            </div>
+        </aside>
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <button class="btn" id="sidebar-toggle" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse navbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a href="#" data-bs-toggle="dropdown" class="nav-icon pe-md-0">
+
+                                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/*;base64,'+ this.img?.imagePath)"  class="avatar img-fluid rounded" alt="">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <a  class="dropdown-item" (click)="showPage('Profil')"> <i class="fa-solid fa-user me-2"></i>Profile</a>
+                                
+                                <a   href="javascript:void(0)" class="dropdown-item" (click)="onLogout()">
+                                    <i class="fa-solid fa-arrow-right-from-bracket me-2"></i> Logout
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main class="content px-3 py-2" >
+
+                <ng-container *ngIf="currentPage === 'dashboard'; else otherContent">
+                    <div class="container-fluid" >
+                        <div class="mb-3">
+                            <h4>{{this.profil}} Dashboard</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6 d-flex">
+                                <div class="card flex-fill border-0 illustration">
+                                    <div class="card-body p-0 d-flex flex-fill">
+                                        <div class="row g-0 w-100">
+                                            <div class="col-6">
+                                                <div class="p-3 m-1">
+                                                    <h4>Welcome Back, {{this.profil}}</h4>
+                                                    <p class="mb-0">{{this.profil}} Dashboard, Bigtech</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-6 align-self-end text-end">
+
+                                                <img [src]="sanitizer.bypassSecurityTrustUrl('data:image/*;base64,'+ this.img?.imagePath)"  class="img-fluid illustration-img"
+                                                    alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="col-12 col-md-6 d-flex">
+                                <div class="card flex-fill border-0">
+                                    <div class="card-body py-4">
+                                        <div class="d-flex align-items-start">
+                                            <div class="flex-grow-1">
+                                                <h4 class="mb-2">
+                                                    $ 78.00
+                                                </h4>
+                                                <p class="mb-2">
+                                                    Total Earnings
+                                                </p>
+                                                <div class="mb-0">
+                                                    <span class="badge text-success me-2">
+                                                        +9.0%
+                                                    </span>
+                                                    <span class="text-muted">
+                                                        Since Last Month
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                        </div>
+                        <!-- Table Element -->
+                       
+                        <div *ngIf="this.profil!='ADMIN'" class="container-xl">
+       
+                            <div class="table-responsive">
+                                <div class="table-wrapper">
+                                    <div class="table-title" style="width: 120%;">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h2>Manage <b>Participation</b></h2>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="material-icons">&#xE147;</i> <span>Add New Participation</span></button>
+                                                <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletModel"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>                      
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped table-hover" style="width: 132;">
+                                        <thead>
+                                            <tr>
+                                               
+                                                <th>First_name</th>
+                                                <th>Last_name</th>
+                                                <th style="text-align: center;">Email</th>
+                                                <th>Phone</th>
+                                                <th>Position</th>
+                                                <th>Presence_mode</th>
+                                                <th style="text-align: center;">Field of activity</th>
+                                                <th>Your_goals</th>
+                                                <th>Event</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let p of allpart">
+                                            
+                                            
+                                                <td>{{p?.user?.first_name}}</td>
+                                                <td>{{p?.user?.last_name}}</td>
+                                                <td>{{p?.user?.email}}</td>
+                                                <td>{{p?.user?.phone_number}}</td>
+                                                <td>{{p?.user?.auth?.name}}</td>
+                                                <td>{{p?.presence}}</td>
+                                                <td>{{p?.activite}}</td>
+                                                <td>{{p?.goal}}</td>
+                                                <td><a href="#detailevent2"(click)="edit(p.id)" class="edit" data-bs-toggle="modal">Détail</a>
+                                                </td>
+                                                <td>{{p?.event}}</td>
+                                                <td>
+                                                    <a href="#editModal2" (click)="edit(p.id)" class="edit" data-bs-toggle="modal" ><i class="material-icons" data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                    <a href="#deletModel2" (click)="delete2(p.id)" class="delete" data-bs-toggle="modal"><i class="material-icons" data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                </td>
+                                                                                          </tr>
+                                            <!-- Ajoutez d'autres lignes de données ici -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                 
+                            </div>        
+                        </div>
+                       
+                       
+
+
+
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form [formGroup]="inscri">
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Add Participation</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            
+                                          
+                                               
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input  formControlName="email"  type="email" class="form-control" required>
+                                            </div>	
+                                              
+                                               
+                                        <div class="form-group">
+                                            <label>Presence mode</label>
+                                          <input  formControlName="presence"  type="text" class="form-control" list="Presence" required>
+                                          <datalist id="Presence">
+                                            <option value="in-person"></option>
+                                            <option value="online"></option>
+                                        </datalist>
+                                    </div>	
+                                    <div class="form-group">
+                                        <label>Field of activity</label>
+                                      <input formControlName="activity" type="text" class="form-control" list="Field" required>
+                                      <datalist id="Field">
+                                        <option value="Banking/Finance/Insurance"></option>
+                                        <option value="Marketing/Advertising/Communication"></option>
+                                        <option value="Health and Well-being"></option>
+                                        <option value="Industry"></option>
+                                        <option value="Other"></option>
+                                    </datalist>
+                                </div>	
+                                <div class="form-group">
+                                    <label>Your goals</label>
+                                    <input type="text"  formControlName="goal" class="form-control" required>
+                                </div>	
+                                <div class="form-group">
+                                    <label for="event">Event:</label>
+                                    <div id="event" style="text-align: center; margin-left: 4%;">
+                                        <div *ngFor="let e of event; let i = index" class="checkbox-container">
+                                            <input type="checkbox" [id]="'option' + i" name="event" [value]="e.id" (change)="onCheckboxChange($event)">
+                                            <label [for]="'option' + i">{{ e.event }}</label>
+                                          </div>
+                                    </div>
+                                </div>		
+                    
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-success"  (click)="enregistrer()"  data-bs-dismiss="modal">Add</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                    
+                    
+                        <div id="detailevent2" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form >
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Détail Event</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <p *ngFor="let u of eventchois ">{{u[1]}}</p>
+                    
+                                         </form>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    
+                    
+                        <!-- Edit Modal HTML -->
+                        <div id="editModal2" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form id="editForm">
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Edit Participation</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <div class="modal-body">					
+                                           
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" name="email"  [(ngModel)]="email" class="form-control" required>
+                                            </div>	
+                                                  
+                                                        
+                                        <div class="form-group">
+                                            <label>Presence mode</label>
+                                          <input type="text" name="presence"  [(ngModel)]="presence" class="form-control" list="Presence" required>
+                                          <datalist id="Presence">
+                                            <option value="in-person"></option>
+                                            <option value="online"></option>
+                                        </datalist>
+                                    </div>	
+                                   
+                               
+                                <div class="form-group">
+                                    <div id="event" style="text-align: center; margin-left: 4%;">
+                                        <div *ngFor="let e of event; let i = index" class="checkbox-container">
+                                            <input type="checkbox" [id]="'option' + i" name="event" [(ngModel)]="e.show" [value]="e.id" (change)="onCheckboxChange($event)">
+                                            <label [for]="'option' + i">{{ e.event }}</label>
+                                          </div>
+                                    </div>
+                                </div>	
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Delete Modal HTML -->
+                        <div id="deletModel2" class="modal fade">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form>
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Delete Participation</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            <p>Are you sure you want to delete these Records?</p>
+                                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" (click)="archiver()" class="btn btn-danger">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                       
+                        <div *ngIf="this.profil=='ADMIN'" class="container-xl">
+                           
+                            <div>
+                                <input type="text" placeholder="Rechercher par position" [(ngModel)]="searchPosition" />
+                            </div>
+       
+                            <div class="table-responsive">
+                                <div class="table-wrapper">
+                                    <div class="table-title">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <h2>Manage <b>Users</b></h2>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="material-icons">&#xE147;</i> <span>Add New User</span></button>
+                                                <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deletModel"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>                      
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table class="table table-striped table-hover" style="width: auto;">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <span class="custom-checkbox">
+                                                        <input type="checkbox" id="selectAll">
+                                                        <label for="selectAll"></label>
+                                                    </span>
+                                                </th>
+                                                <th>First_name</th>
+                                                <th>Last_name</th>
+                                                <th>Email</th>
+                                                <th>Phone</th>
+                                                <th>Civility</th>
+                                                <th>Country</th>
+                                                <th>Role</th>
+                                                <th>Picture</th>
+                                                <th>Password</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let u of filteredList()">
+                                                <td>
+                                                    <span class="custom-checkbox">
+                                                        <input type="checkbox" class="checkbox1">
+                                                        <label></label>
+                                                    </span>
+                                                </td>
+                                                <td>{{u?.user?.first_name}}</td>
+                                                <td>{{u?.user?.last_name}}</td>
+                                                <td>  {{u?.user?.email}}</td>
+                                                <td>  {{u?.user?.phone_number}}</td>
+                                                <td>  {{u?.user?.civilty}}</td>
+                                                <td>  {{u?.user?.country}}</td>
+                                                <td>  {{u?.user?.auth?.name}}</td>
+                                                <td ><img  [src]="sanitizer.bypassSecurityTrustUrl('data:image/*;base64,'+u?.imagePath)" width="50" height="50" alt="Image"></td> 
+
+                                                <td>  {{u?.user?.password}}</td>
+                                                <td> 
+                                                    <a href="#editModal" (click)="affichebyid(u.id)" class="edit" data-bs-toggle="modal"><i class="material-icons" data-bs-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                                    <a href="#deletModel"(click)=delete(u.id) class="delete" data-bs-toggle="modal"><i class="material-icons" data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                                </td>                                           </tr>
+                                            <!-- Ajoutez d'autres lignes de données ici -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                 
+                            </div>        
+                        </div>
+                        <!-- Modals pour l'ajout, l'édition et la suppression ici -->
+                        <!--Add Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form [formGroup]="formuser" #f="ngForm" (ngSubmit)="adduser()" enctype="multipart/form-data">
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Add User</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            <div class="form-group">
+                                                <label>First_name</label>
+                                                <input type="text" formControlName="firstname"  class="form-control" [(ngModel)]="user.first_name" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Last_name</label>
+                                                <input formControlName="lastname"  type="text"  class="form-control" [(ngModel)]="user.last_name" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <!-- <input formControlName="email"  type="email"  class="form-control" [(ngModel)]="user.email" required> -->
+                                                <input formControlName="email" class="form-control" type="email" name="email" placeholder="" required [(ngModel)]="user.email">
+                                                <div class="invalid-feedback d-block" *ngIf="formuser.get('email')?.touched && formuser.get('email')?.hasError('gmail')">
+                                                  <small style="margin-left: 4%; font-size:12px;font-family:Poppins, sans-serif;">Email must end with &#64;gmail.com</small>
+                                                </div>
+                                                
+            
+                                            </div>
+                                            
+
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="text" formControlName="phone_number" [(ngModel)]="user.phone_number" class="form-control" required>
+                                            </div>		
+                                            		
+                                            <div class="form-group">
+                                                <label>Civility</label>
+                                                <input type="text" formControlName="civility" [(ngModel)]="user.civility" class="form-control" list="Civility" required>
+                                                <datalist   name="civility"  required=""  id="Civility">
+                                                    <option value="Mr">Monsieur</option>
+                                                    <option value="Mrs">Madame</option>
+                                                    <option value="Miss">Mademoiselle </option>
+                                                </datalist>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <input formControlName="country" type="text" name="country"  [(ngModel)]="user.country" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Role</label>
+                                                <input type="text" formControlName="role" [(ngModel)]="user.role" class="form-control" list="role" required>
+                                                <datalist  name="role" placeholder="role" required=""   id="role">
+                                                   
+                                                    <option  value="VISITEUR"></option>
+                                                    <option  value="SPONSOR"></option>
+                                                    <option  value="SPEAKER"></option>
+                                                    <option  value="INVESTOR"></option>
+                                                    <option  value="STARTUP"></option>
+                                                </datalist>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Picture</label>
+                                                <input type="file" name="image" accept="image/*" (change)="onFileChanged($event)" placeholder="Picture" required=""  class="form-control" required>
+                                            </div>
+                                           <div class="form-group">
+    <label>Password</label>
+    <div class="password-wrapper">
+        <input 
+            formControlName="password" 
+            [type]="passwordFieldType" 
+            name="password" 
+            placeholder="password" 
+            required 
+            [(ngModel)]="user.password" 
+            class="form-control">
+        <i 
+            class="fas" 
+            [ngClass]="{'fa-eye': passwordFieldType === 'password', 'fa-eye-slash': passwordFieldType !== 'password'}" 
+            (click)="togglePasswordVisibility()">
+        </i>
+    </div>
+</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Add</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                          </div>
+                        <!--delet Modal-->
+                        <div class="modal fade" id="deletModel" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form>
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Delete User</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            <p>Are you sure you want to delete these Records?</p>
+                                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-danger" (click)="supprimer()" data-bs-dismiss="modal">Delete</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Edit Model-->
+                        <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form [formGroup]="modif">
+                                        <div class="modal-header">						
+                                            <h4 class="modal-title">Edit User</h4>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                                        </div>
+                                        <div class="modal-body">					
+                                            <div class="form-group">
+                                                <label>First_name</label>
+                                                <input  type="text" class="form-control" formControlName="firstname" [(ngModel)]="this.first" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Last_name</label>
+                                                <input type="text" class="form-control" formControlName="lastname" [(ngModel)]="this.last" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Email</label>
+                                                <input type="email" formControlName="email" [(ngModel)]="this.email" class="form-control" required>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Phone</label>
+                                                <input type="tel" formControlName="phone" [(ngModel)]="this.phone" class="form-control" required>
+                                            </div>	
+                                            
+                                            <div class="form-group">
+                                                <label>Picture</label>
+                                                <td><img  [src]="sanitizer.bypassSecurityTrustUrl('data:image/jpg;base64,'+ this?.image )" width="50" height="50" alt="Image"></td> 
+
+                                                <input type="file" formControlName="imagePath" name="image" accept="image/*" (change)="onFileChanged2($event)" placeholder="Picture" required=""  class="form-control" required>
+                                            </div>
+                                           
+                                           	
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-default" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-info" (click)="update()" data-bs-dismiss="modal">Save</button>
+    
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </ng-container>
+                
+
+            <ng-template #otherContent>
+                <div *ngIf="currentPage === 'page1'">
+                  <!-- Inclure ici le composant ou le contenu de la page1 -->
+                  <app-page1></app-page1>
+
+                </div>
+                <div *ngIf="currentPage === 'page2'">
+                  <!-- Inclure ici le composant ou le contenu de la page2 -->
+                  <app-page2></app-page2>
+                </div>
+                
+                <div *ngIf="currentPage === 'cardevent'">
+                  <!-- Inclure ici le composant ou le contenu de la page1 -->
+                  <app-cardevent></app-cardevent>
+
+                </div>
+                <div *ngIf="currentPage === 'Profil'">
+                    <!-- Inclure ici le composant ou le contenu de la page2 -->
+                    <app-profil></app-profil>
+                  </div>
+
+                  <div *ngIf="currentPage === 'participations'">
+                    <!-- Inclure ici le composant ou le contenu de la page2 -->
+                    <app-participations></app-participations>
+                  </div>
+                  <div *ngIf="currentPage === 'ourechoes'">
+                    <!-- Inclure ici le composant ou le contenu de la page2 -->
+                    <app-ourechoes></app-ourechoes>
+                  </div>
+                  <div *ngIf="currentPage === 'sponsors'">
+                    <!-- Inclure ici le composant ou le contenu de la page2 -->
+                    <app-sponsors></app-sponsors>
+                  </div>
+              </ng-template>
+
+
+            </main>
+            <a href="#" class="theme-toggle">
+                <i class="fa fa-moon"></i>
+                <i class="fa fa-sun"></i>
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

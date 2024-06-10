@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+    <div class="titre">
+        <h2>Agenda Bigtech 2024</h2>
+    </div>
+<br><br>
+    <div class="bt">
+       <table >
+        <tr >
+            <td  *ngFor="let a of agen ; let i = index " >
+                <button (click)="selectDay(a.id)">Day {{i+1}}</button></td>
+
+        </tr>
+       </table>
+   
+    </div>
+
+<br><br>
+
+      </div>
+      <div class="image">
+        <td><img  [src]="sanitizer.bypassSecurityTrustUrl('data:image/*;base64,'+ this.image )"alt="Image"></td> 
+
+        <!-- <img [src]="selectedImage" *ngIf="selectedImage" alt="Day Image"> -->
+      </div>
+</body>
+</html>

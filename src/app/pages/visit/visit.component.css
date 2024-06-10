@@ -1,0 +1,60 @@
+.contenu, .contenu1{
+    display: flex;
+    background-color: black;
+    height: 75vh;
+}
+.p1, .p2 , .part1{
+    flex: 1;
+}
+.p1 h2 {
+    color: #fff;
+    font-family: Poppins, sans-serif;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 1.125em;
+    margin-left: 25%;
+    margin-top: 20%;
+}
+.p1 p {
+    color: #fff;
+    margin: 10px 0;
+    font-size: 17px;
+    font-weight: 500;
+    margin-left: 25%;
+    margin-top: 3%;
+}
+.p2 img {
+    width: 520px;
+    height: 350px;
+    margin-top: 12%;
+}
+.part1 h2 {
+    color: #fff;
+    font-family: Poppins, sans-serif;
+    font-weight: 800;
+    font-size: 29px;
+    line-height: 1.125em;
+    margin-left:12%;
+}
+.part1 {
+    margin-top: 5%;
+}
+
+.bouton {
+    position: absolute;
+    text-decoration: none;
+    color: black;
+    border: 2px solid #53F6C6;
+    padding: 11px 25px; 
+    background-color: #53F6C6;
+    border-radius: 28px;
+    font-weight: bold;
+    font-size: 11px;
+    margin-top: 2%;
+    margin-left:13%;
+}
+
+/* lorsque on selection un object */
+::selection {
+    background: #50d6ae;
+    color: #fff;}

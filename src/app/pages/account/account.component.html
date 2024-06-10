@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+	<div class="main">  	
+		<input type="checkbox" id="chk" aria-hidden="true">
+
+			<div class="signup">
+				<form [formGroup]="formuser" #f="ngForm" (ngSubmit)="signup()" enctype="multipart/form-data">
+					<label for="chk" aria-hidden="true">Sign up</label>
+					<input type="text" formControlName="firstname" name="first_name" placeholder="First_name" required=""  [(ngModel)]="user.first_name">
+					
+					
+					<div class="invalid-feedback d-block"
+					 *ngIf="formuser.get('firstname')?.touched && !formuser.get('firstname')?.valid">
+					<small>*</small>
+					</div>
+					
+					
+					
+					<input type="text" name="last_name" placeholder="Last_name"  formControlName="lastname"   [(ngModel)]="user.last_name" required="">
+					<div class="invalid-feedback d-block"
+					*ngIf="formuser.get('lastname')?.touched && !formuser.get('lastname')?.valid">
+				   <small>*</small>
+				   </div>
+					<!-- <input formControlName="email" type="email" name="email" placeholder="Email" required=""          [(ngModel)]="user.email"
+					>
+					<div class="invalid-feedback d-block"
+					*ngIf="formuser.get('email')?.touched && !formuser.get('email')?.valid">
+				   <small>*</small>
+				   </div> -->
+				   <input formControlName="email" type="email" name="email" placeholder="Email" required [(ngModel)]="user.email">
+  <div class="invalid-feedback d-block" *ngIf="formuser.get('email')?.touched && formuser.get('email')?.hasError('gmail')">
+    <small style="margin-left: 4%; font-size:12px;font-family:Poppins, sans-serif;">Email must end with &#64;gmail.com</small>
+  </div>
+  <div class="invalid-feedback d-block" *ngIf="formuser.get('email')?.touched && formuser.get('email')?.hasError('required')">
+    <small>*</small>
+  </div>
+  <div class="invalid-feedback d-block" *ngIf="formuser.get('email')?.touched && formuser.get('email')?.hasError('email')">
+    <small style="margin-left: 4%; font-size:12px;font-family:  Poppins, sans-serif;">Invalid email format</small>
+  </div>
+
+
+
+  <input formControlName="phone_number" type="text" name="phone_number" placeholder="phone_number" required="" [(ngModel)]="user.phone_number">	
+					
+  <div class="invalid-feedback d-block"
+  *ngIf="formuser.get('phone_number')?.touched && !formuser.get('phone_number')?.valid">
+ <small>*</small>
+ </div>
+
+			
+
+
+					
+
+
+					 <select formControlName="civility" name="civility"  placeholder="civility"required=""  [(ngModel)]="user.civility">
+						<option value="" selected>Civility</option>
+						<option  value="Monsieur" style="color: black;">Mr</option>
+						<option  value="Madame" style="color: black;">Mrs</option>
+						<option  value="Mademoiselle" style="color: black;">Miss</option>
+					  </select>
+					   
+
+					  <div class="invalid-feedback d-block"
+					  *ngIf="formuser.get('civility')?.touched && !formuser.get('civility')?.valid">
+					 <small>*</small>
+					 </div>
+
+					 <select formControlName="country"  name="country"  placeholder="Country"required="" [(ngModel)]="user.country">
+						<option value="" disabled selected>country</option>
+						<option value="Tunisia" style="color: black;">Tunisia</option>
+						<option value="Canada" style="color: black;">Canada</option>
+						<option value="Denmark"style="color: black;">Denmark</option>
+						<option value="Estonia" style="color: black;">Estonia</option>
+						<option value="France"style="color: black;">France</option>
+					  </select>
+					<!-- <input formControlName="country" type="text" name="country" placeholder="Country" required="" [(ngModel)]="user.country">	 -->
+					 
+					<div class="invalid-feedback d-block"
+					*ngIf="formuser.get('country')?.touched && !formuser.get('country')?.valid">
+				   <small>*</small>
+				   </div>
+					<!-- <input type="text" name="role" placeholder="role" required=""             [(ngModel)]="user.role"
+					> -->
+					<select formControlName="role" name="role" placeholder="role" required=""  [(ngModel)]="user.role">
+						<option value="" disabled selected>Role</option>
+						<!-- <option  value="ADMIN" style="color: black;">ADMIN</option> -->
+						<option  value="VISITEUR" style="color: black;">VISITEUR</option>
+						<option  value="SPONSOR" style="color: black;">SPONSOR</option>
+						<option  value="SPEAKER" style="color: black;">SPEAKER</option>
+						<option  value="INVESTOR" style="color: black;">INVESTOR</option>
+						<option  value="STARTUP" style="color: black;">STARTUP</option>
+						
+					  </select>
+					  <div class="invalid-feedback d-block"
+					  *ngIf="formuser.get('role')?.touched && !formuser.get('role')?.valid">
+					 <small>*</small>
+					 </div>
+					<input type="file" name="image" accept="image/*" (change)="onFileChanged($event)" placeholder="Picture" required=""  class="form-control" required>
+					
+					
+					<!-- <input formControlName="password"   [type]="passwordFieldType"  name="password" placeholder="password" required="" [(ngModel)]="user.password">	
+					<i 
+            class="fas" 
+            [ngClass]="{'fa-eye': passwordFieldType === 'password', 'fa-eye-slash': passwordFieldType !== 'password'}" 
+            (click)="togglePasswordVisibility()" style="color: white;">
+        </i>
+					<div class="invalid-feedback d-block"
+					*ngIf="formuser.get('password')?.touched && !formuser.get('password')?.valid">
+				   <small>*</small>
+				   </div>  
+				   <div class="invalid-feedback d-block" *ngIf="formuser.get('password')?.touched && formuser.get('password')?.errors">
+					<small *ngIf="formuser.get('password')?.errors?.['required']">*</small>
+					<small *ngIf="formuser.get('password')?.errors?.['uppercase']">{{ formuser.get('password')?.errors?.['uppercase'] }}</small>
+					<small *ngIf="formuser.get('password')?.errors?.['symbol']">{{ formuser.get('password')?.errors?.['symbol'] }}</small>
+					<small *ngIf="formuser.get('password')?.errors?.['length']">{{ formuser.get('password')?.errors?.['length'] }}</small>
+				  </div> -->
+				  <div class="password-wrapper">
+					<div class="password-container">
+					  <input [type]="passwordFieldType" formControlName="password" name="password" placeholder="Password" required="" [(ngModel)]="user.password">
+					  <i 
+            class="fas" 
+            [ngClass]="{'fa-eye': passwordFieldType === 'password', 'fa-eye-slash': passwordFieldType !== 'password'}" 
+            (click)="togglePasswordVisibility()" style="color: white;">
+        </i>
+					</div>
+					<div class="invalid-feedback d-block" *ngIf="formuser.get('password')?.touched && formuser.get('password')?.errors">
+					  <small *ngIf="formuser.get('password')?.errors?.['required']">*</small>
+					  <small *ngIf="formuser.get('password')?.errors?.['uppercase']">{{ formuser.get('password')?.errors?.['uppercase'] }}</small>
+					  <small *ngIf="formuser.get('password')?.errors?.['symbol']">{{ formuser.get('password')?.errors?.['symbol'] }}</small>
+					  <small *ngIf="formuser.get('password')?.errors?.['length']">{{ formuser.get('password')?.errors?.['length'] }}</small>
+					</div>
+				  </div>
+				  
+
+				
+					<button type="submit" [disabled]="formuser.invalid">Sign up</button>
+				</form>
+			</div>
+
+			<div class="login">
+				<form #f="ngForm" (ngSubmit)="signIn()" enctype="application/json">
+					<label for="chk" aria-hidden="true">Login</label>
+					<input type="email" name="email" placeholder="Email" required=""  [(ngModel)]="user.email" class="em">
+					<input type="password" name="pswd" placeholder="Password" required=""  [(ngModel)]="user.password" class="pss">
+					<button>Login</button>
+				</form>
+				
+			</div>
+			
+	</div>
+</body>
+</html>

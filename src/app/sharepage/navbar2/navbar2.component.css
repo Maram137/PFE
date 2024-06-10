@@ -1,0 +1,279 @@
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+.navbar .fa-search {
+    margin-right: 15px;
+    position: relative; /* Add this line to position the search field relative to the search icon */
+    margin-top: 8px;
+}
+
+.navbar .search-field {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff; /* Changed to white */
+}
+
+.navbar .show-search-field {
+    display: block;
+}
+
+/* Styles for showing the search field */
+.show-search-field {
+    display: block;
+}
+
+.nav-link {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 34px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #000; /* Changed to black */
+    font-family: Poppins, sans-serif;
+    position: relative;
+    margin-top: 7px;
+    margin-right: 10px;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #000; /* Changed to black */
+}
+
+.nav-link::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: #50d6ae;
+    visibility: hidden;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover::before, .nav-link.active::before {
+    width: 100%;
+    visibility: visible;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.nav-item.dropdown .dropdown-menu {
+    border-radius: 0;
+}
+
+.dropdown-item {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 24px;
+    letter-spacing: 1px;
+    color: #282828;
+    font-family: Poppins, sans-serif;
+    position: relative;
+}
+
+.dropdown-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    transform: translateX(-50%);
+    width: 0px;
+    height: 3px;
+    background-color: #50d6ae;
+    visibility: hidden;
+    transition: 0.5s ease-in-out;
+}
+
+.a:hover::before, .e:hover::before {
+    width: 50px;
+    visibility: visible;
+    left: 40px;
+}
+
+.b:hover::before {
+    left: 50%;
+    width: 85%;
+    visibility: visible;
+}
+
+.d:hover::before, .g:hover::before {
+    left: 40%;
+    width: 63%;
+    visibility: visible;
+}
+
+.h:hover::before {
+    left: 38%;
+    width: 59%;
+    visibility: visible;
+}
+
+.f:hover::before {
+    left: 48%;
+    width: 77%;
+    visibility: visible;
+}
+
+.c:hover::before {
+    left: 19%;
+    width: 20%;
+    visibility: visible;
+}
+
+.dropdown-item:active {
+    background-color: white;
+}
+
+.dropdown-item:visited {
+    background-color: #fff;
+}
+
+.navbar {
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+.bg-transparent {
+    background-color: transparent !important;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.bg-white .nav-link {
+    color: #000 !important; /* Ensuring text color is black */
+    font-weight: 700;
+}
+
+.navbar-toggler {
+    border: none;
+    background: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+/* Search */
+.search-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Changed to white */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.search-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 18%;
+    margin-bottom: 5%;
+    width: 80%;
+    max-width: 600px; /* Adjust as needed */
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #000; /* Changed to black */
+    outline: none;
+}
+
+.help-text {
+    font-size: 12px;
+    font-weight: 600;
+    font-style: italic;
+    letter-spacing: 1px;
+    font-family: Poppins, sans-serif;
+    color: #50d6ae;
+    position: absolute;
+    margin-top: -0.8%;
+}
+
+.search-title {
+    font-weight: 1000;
+    font-size: 40px;
+    letter-spacing: 1px;
+    font-family: Poppins, sans-serif;
+    color: #000; /* Changed to black */
+    margin-bottom: 20px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 3%;
+    width: 110%;
+    box-shadow: 0 0 15px 5px rgba(80, 214, 174, 0.3); /* Subtle light effect */
+    background-color: white; /* Ensure the background is white */
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.divider {
+    width: 1px;
+    background-color: #50d6ae;
+    height: 30px;
+    margin: 0 10px;
+}
+
+.search-button {
+    background-color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family: Poppins, sans-serif;
+    color: #50d6ae;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.search-button:hover {
+    background-color: #e8f8f5;
+}

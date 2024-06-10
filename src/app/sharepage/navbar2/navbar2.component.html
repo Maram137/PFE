@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="" style="margin-top: 9px; margin-left: 30px;">
+        <img src='assets/images/logo1.png'  alt="" width="165" height="28" class="d-inline-block align-top" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:black;" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >
+                        ABOUT</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item h" routerLink="propos" routerLinkActive="active-link"> Bigetch Team</a></li>
+                        <li><a class="dropdown-item h" href="plateforme" routerLinkActive="active-link"> Digital Platform</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:black;" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        EVENTS
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item b" href="https://www.tdsconference.tn/">Tunisia Digital Summit</a></li>
+                        <li><a class="dropdown-item a " routerLink="africup" routerLinkActive="active-link">Afric’Up</a></li>
+                        <li><a class="dropdown-item c" routerLink="geec" routerLinkActive="active-link">Geec</a></li>
+                        <li><a class="dropdown-item d" routerLink="developerdays" routerLinkActive="active-link">Developer Days</a></li>
+                        <li><a class="dropdown-item e" routerLink="jobfair" routerLinkActive="active-link">Job Fair</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a  class="nav-link dropdown-toggle" style="color:black;" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">PROGRAM</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item a" routerLink="agenda" routerLinkActive="active-link">AGENDA</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="exhibit" routerLinkActive="active-link"> EXHIBIT</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:black;" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        BUSINESS & SIDE EVENTS</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item f" routerLink="celebrate" routerLinkActive="active-link">Celebrate BIGTECH</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" style="color:black;" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        ATTEND</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li><a class="dropdown-item g"routerLink="visit" routerLinkActive="active-link">Plan Your Visit</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/account" routerLinkActive="active-link">ACCOUNT</a>
+                </li>
+            </ul>
+            <button class="btn" style="background: none; border: none;" (click)="toggleSearch()">
+                <i class="fas fa-search" style="cursor:pointer;"></i>
+            </button>
+        </div>
+    </div>
+    
+ <!-- Search Container -->
+ <div class="search-wrapper" *ngIf="isSearchActive">
+    <button class="close-btn" (click)="toggleSearch()">×</button>
+    <div class="search-container">
+        <span class="help-text">&lt;We_can_help/&gt;</span>
+        <p class="search-title"><span class="highlight">What are you looking for?</span></p>
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="_Enter Your keyword" [(ngModel)]="searchTerm" (keyup.enter)="performSearch()">
+            <div class="divider"></div>
+            <button class="search-button" (click)="performSearch()">&lt;SEARCH/&gt;</button>
+        </div>
+    </div>
+</div>
+  </nav>

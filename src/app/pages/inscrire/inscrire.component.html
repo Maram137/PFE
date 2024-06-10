@@ -1,0 +1,85 @@
+<app-navbar2></app-navbar2>
+<div class="container-fluid contenu" id="grad1">
+    <div class="row justify-content-center mt-0">
+        <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2 form-wrapper">
+            <div class="card px-0 pt-4 pb-0 mt-3 mb-3">
+                <h2><strong>Event Registration</strong></h2>
+                <p>Fill all form field to go to the next step</p>
+                <div class="row">
+                    <div class="col-md-12 mx-0">
+                        <form  [formGroup]="inscri" id="msform">
+                            <!-- progressbar -->
+                            <ul id="progressbar">
+                                <li class="active" id="account"><strong>Personal</strong></li>
+                                <li id="personal"><strong>Informations complémentaires</strong></li>
+                                <li id="confirm"><strong>Validation</strong></li>
+                            </ul>
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Account Information</h2>
+                                    <input formControlName="email" type="email" name="email" placeholder="Email"/>
+                                    <!-- <input type="text" name="role" placeholder="Position"/> -->
+                                   
+                                    
+                                    
+                                    
+                                    <!-- <input type="" name="presence" placeholder="Presence mode"/> -->
+                                    <select  name="presence" placeholder="Presence mode" required="" formControlName="presence"  style="color: #616161;">
+                                        <option value="" disabled selected> Presence mode</option>
+    
+                                        <option value="in-person">In-person</option>
+                                             <option value="online">Online</option>
+                                      </select>
+                                </div>
+                                <input type="button" name="next" class="next action-button" value="Next Step"/>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title">Personal Information</h2>
+                                    <!-- <input type="text" name="activite" placeholder="Field of activity"/> -->
+                                    <select name="activite" placeholder="Field of activity" required=""  formControlName="activity"  style="color: #616161;">
+                                        <option value="" disabled selected>Field of activity</option>
+    
+                                           <option  value="Banking/Finance/Insurance">Banking/Finance/Insurance</option>
+						                   <option  value="Marketing/Advertising/Communication">Marketing/Advertising/Communication</option>
+						                    <option  value="Health and Well-being">Health and Well-being</option>
+						                    <option  value="Industry"> Industry</option>
+						                      <option  value="Other">Other</option>
+                                      </select>
+                                    <input type="text" name="objct" placeholder="Your goals"  formControlName="goal"/>
+                                    <label for="event">Event:</label>
+                                    <div id="event" style="text-align: center; margin-left: 4%;">
+                                        <div *ngFor="let e of event; let i = index" class="checkbox-container">
+                                            <input type="checkbox" [id]="'option' + i" name="event" [value]="e.id" (change)="onCheckboxChange($event)">
+                                            <label [for]="'option' + i">{{ e.event }}</label>
+                                          </div>
+                                    </div>
+                                </div>
+                                <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
+                                <input type="button" name="next" (click)="enregistrer()" class="next action-button" value="Next Step"/>
+                            </fieldset>
+                            <fieldset>
+                                <div class="form-card">
+                                    <h2 class="fs-title text-center">Success !</h2>
+                                    <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-3">
+                                            <img src="https://img.icons8.com/color/96/000000/ok--v2.png" class="fit-image">
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                    <div class="row justify-content-center">
+                                        <div class="col-7 text-center">
+                                            <h5>You Have Successfully Registration</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
